@@ -67,55 +67,60 @@ logging.getLogger("ssh.transport").setLevel(logging.INFO)
 # Read the cdash configuration file to get the cdash settings
 def getconfiguration():
 	# Check to see if the file exists in the same directory as the CDASH script. If not, prompt user and exit.
-	if not os.path.exists(os.path.dirname(os.path.realpath(sys.argv[0]))+"\configcdash.cfg"):
-		print os.path.dirname(os.path.realpath(sys.argv[0]))+"\configcdash.cfg"
-		print "Cannot find the CDASH configuration file, \"configcdash.cfg\". Check file exists in same directory as executable."
-		exit()
-	else:
-		Config = ConfigParser.ConfigParser()
-		# If you want to store your config file elsewhere, then change this line to give the path to the file, e.g.
-		# Config.read("C:\configcdash.cfg")
-		Config.read(os.path.dirname(os.path.realpath(sys.argv[0]))+"\configcdash.cfg")
-		
-		# Get Starcluster configuration settings
-		starcluster_config		= Config.get("starcluster_settings","starcluster_config")
-		configlocation 			= os.path.dirname(starcluster_config)
-		cdash_ami 				= Config.get("starcluster_settings","cdash_ami")
-		cdash_subnet 			= Config.get("starcluster_settings","cdash_subnet")
-
-		# Get CDASH normal settings
-		sevenzip 				= Config.getboolean("cdash_settings","sevenzip")
-		mergeresults 			= Config.getboolean("cdash_settings","mergeresults")
-		downbest 				= Config.getboolean("cdash_settings","downbest")
-		numdown 				= int(Config.get("cdash_settings","numdown"))
-		terminator 				= Config.getboolean("cdash_settings","terminator")
-		shutdownnodes 			= Config.getboolean("cdash_settings","shutdownnodes")
-		convert 				= Config.getboolean("cdash_settings","convert")
-		currency 				= Config.get("cdash_settings","currency")
-		
-		# Get CDASH advanced settings
-		verbose 				= Config.getboolean("advanced_settings","verbose")
-		tracker 				= int(Config.get("advanced_settings","tracker"))
-
-		allowinstances_string 	= Config.get("advanced_settings","allowinstances")
-		allowinstances = []
-		temp = []
-		allowinstances_string.replace(" ", "")
-		for item in allowinstances_string.split(","):
-			allowinstances.append(item)
-			
-		maxnodes 				= int(Config.get("advanced_settings","maxnodes"))
-		ID 						= Config.get("advanced_settings","ID")
-		masternode_different 	= Config.getboolean("advanced_settings","masternode_different")
-		masternode_type 		= Config.get("advanced_settings","masternode_type")
-		switchregion 			= Config.getboolean("advanced_settings","switchregion")
-		region 					= Config.get("advanced_settings","region")
-
-		region_host 			= Config.get("advanced_settings","region_host")
-		switchkey 				= Config.get("advanced_settings","switchkey")
-		switchami 				= Config.get("advanced_settings","switchami")
-		switchsubnet 			= Config.get("advanced_settings","switchsubnet")
+	cdash_config_location = os.path.dirname(os.path.realpath(sys.argv[0]))+"\configcdash.cfg"
+	cdash_config_backup_location = os.path.join("C:\Python27","configcdash.cfg")
+	while not os.path.exists(cdash_config_location):
+		cdash_config_location = cdash_config_backup_location
+		while not os.path.exists(cdash_config_location):
+			print "Cannot find the CDASH configuration file, \"configcdash.cfg\" at",cdash_config_location
+			location = raw_input("Enter location for configcdash.cfg or type exit to quit: ")
+			if location == "exit":
+				exit()
 	
+	Config = ConfigParser.ConfigParser()
+	# If you want to store your config file elsewhere, then change this line to give the path to the file, e.g.
+	# Config.read("C:\configcdash.cfg")
+	Config.read(cdash_config_location)
+	
+	# Get Starcluster configuration settings
+	starcluster_config		= Config.get("starcluster_settings","starcluster_config")
+	configlocation 			= os.path.dirname(starcluster_config)
+	cdash_ami 				= Config.get("starcluster_settings","cdash_ami")
+	cdash_subnet 			= Config.get("starcluster_settings","cdash_subnet")
+	
+	# Get CDASH normal settings
+	sevenzip 				= Config.getboolean("cdash_settings","sevenzip")
+	mergeresults 			= Config.getboolean("cdash_settings","mergeresults")
+	downbest 				= Config.getboolean("cdash_settings","downbest")
+	numdown 				= int(Config.get("cdash_settings","numdown"))
+	terminator 				= Config.getboolean("cdash_settings","terminator")
+	shutdownnodes 			= Config.getboolean("cdash_settings","shutdownnodes")
+	convert 				= Config.getboolean("cdash_settings","convert")
+	currency 				= Config.get("cdash_settings","currency")
+	
+	# Get CDASH advanced settings
+	verbose 				= Config.getboolean("advanced_settings","verbose")
+	tracker 				= int(Config.get("advanced_settings","tracker"))
+
+	allowinstances_string 	= Config.get("advanced_settings","allowinstances")
+	allowinstances = []
+	temp = []
+	allowinstances_string.replace(" ", "")
+	for item in allowinstances_string.split(","):
+		allowinstances.append(item)
+		
+	maxnodes 				= int(Config.get("advanced_settings","maxnodes"))
+	ID 						= Config.get("advanced_settings","ID")
+	masternode_different 	= Config.getboolean("advanced_settings","masternode_different")
+	masternode_type 		= Config.get("advanced_settings","masternode_type")
+	switchregion 			= Config.getboolean("advanced_settings","switchregion")
+	region 					= Config.get("advanced_settings","region")
+
+	region_host 			= Config.get("advanced_settings","region_host")
+	switchkey 				= Config.get("advanced_settings","switchkey")
+	switchami 				= Config.get("advanced_settings","switchami")
+	switchsubnet 			= Config.get("advanced_settings","switchsubnet")
+
 	return cdash_ami, cdash_subnet, configlocation, starcluster_config, sevenzip, mergeresults, downbest, numdown, terminator, shutdownnodes, \
 	convert, currency, verbose, tracker, allowinstances, maxnodes, ID, masternode_different, masternode_type, switchregion, region, region_host, \
 	switchkey, switchami, switchsubnet
@@ -129,7 +134,7 @@ def checkfiles():
 		exit()
 
 def getitype():
-	itype = raw_input('\nEnter instance type: ')
+	itype = raw_input('\nEnter EC2 instance type: ')
 	while True:
 		if itype == 'exit':
 			exit('\nExiting...')
@@ -137,11 +142,16 @@ def getitype():
 			break
 		else:
 			print 'Instance type',itype,'is not supported. Please enter one of the following:\n',allowinstances,'\nEdit configuration in CDASH.py to override. Type exit to end\n'
-			itype = raw_input('\nEnter instance type: ')
+			itype = raw_input('\nEnter EC2 instance type: ')
 	return itype
 
 def getnumnodes():
-		numnodes = int(raw_input('\nEnter number of nodes: '))
+		while True:
+			try:
+				numnodes = int(raw_input('\nEnter number of nodes for cluster: '))
+				break
+			except:
+				print "You must enter a number"
 		if numnodes > maxnodes:
 			while True:
 				if numnodes == 'exit':
@@ -151,7 +161,7 @@ def getnumnodes():
 				if numnodes <= maxnodes:
 					break
 				print '\nMaximum instance limit [',maxnodes,'] exceeded. If you have increased your instance limit edit configuration in CDASH.py to remove error'
-				numnodes = raw_input('\nType exit to end\nEnter number of nodes: ')
+				numnodes = raw_input('\nType exit to end\nEnter number of nodes for cluster: ')
 		return numnodes
 		
 def readarguments():
@@ -218,7 +228,7 @@ def clusterprms(masternode_type):
 					break
 				else:
 					print 'Instance type',masternode_type,'is not supported. Please enter one of the following:\n',allowinstances,'\nEdit configuration in CDASH.py to override. Type exit to end\n'
-					masternode_type = raw_input('\nEnter instance type: ')
+					masternode_type = raw_input('\nEnter EC2 instance type: ')
 	if (verbose == True) or (update_verbose_configuration == True):
 		print 'Running in verbose mode...'
 	return itype, numnodes, update_verbose_configuration
@@ -746,9 +756,6 @@ def f_main():
 		print "\n    Running in region",region
 	
 	t1 = time.time() # Start time
-	for file in glob.glob("*.dbf"):
-		print file
-	exit()
 	if update_verbose_configuration == True:
 		verbose = True
 	sdiroot = dashprms()
