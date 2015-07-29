@@ -97,6 +97,7 @@ def getconfiguration():
 	shutdownnodes 			= Config.getboolean("cdash_settings","shutdownnodes")
 	convert 				= Config.getboolean("cdash_settings","convert")
 	currency 				= Config.get("cdash_settings","currency")
+	dash_ami_location 		= Config.get("cdash_settings","dash_ami_location")
 	
 	# Get CDASH advanced settings
 	verbose 				= Config.getboolean("advanced_settings","verbose")
@@ -122,8 +123,8 @@ def getconfiguration():
 	switchsubnet 			= Config.get("advanced_settings","switchsubnet")
 
 	return cdash_ami, cdash_subnet, configlocation, starcluster_config, sevenzip, mergeresults, downbest, numdown, terminator, shutdownnodes, \
-	convert, currency, verbose, tracker, allowinstances, maxnodes, ID, masternode_different, masternode_type, switchregion, region, region_host, \
-	switchkey, switchami, switchsubnet
+	convert, currency, dash_ami_location, verbose, tracker, allowinstances, maxnodes, ID, masternode_different, masternode_type, switchregion, \
+	region, region_host, switchkey, switchami, switchsubnet
 	
 
 # Check to see that the location of the StarCluster config file is correct.
@@ -357,7 +358,8 @@ def writescripts(numnodes, numdown, mergeresults):
 	run.write("\ncp *.xye /mnt/data/d.$1.d")
 	run.write("\ncp *.zmatrix /mnt/data/d.$1.d")
 	run.write("\ncd /mnt/data/d.$1.d")
-	run.write("\nxvfb-run -a wine /root/DASH/DASH.exe $1") 
+	#run.write("\nxvfb-run -a wine /root/DASH/DASH.exe $1") 
+	run.write("\nxvfb-run -a wine "+dash_ami_location+" $1") 
 	# Move the result files into the parent directory then delete the directory.
 	run.write("\nmv *.dash *.log ..")
 	run.write("\ncd ..")
@@ -598,7 +600,8 @@ def shutdown(numnodes, numdown, mergeresults):
 		else:
 			subprocess.call(retrieve_the_results)
 		print "\nAttempting to merge .dash files...\nThis may take a few minutes"
-		merge_the_results = starcluster_call + ["sshmaster",ID,"xvfb-run -a wine /root/DASH/DASH.exe merge /mnt/data /mnt/data/mergedresults.dash"]
+		#merge_the_results = starcluster_call + ["sshmaster",ID,"xvfb-run -a wine /root/DASH/DASH.exe merge /mnt/data /mnt/data/mergedresults.dash"]
+		merge_the_results = starcluster_call + ["sshmaster",ID,"xvfb-run -a wine "+dash_ami_location+" merge /mnt/data /mnt/data/mergedresults.dash"]
 		if verbose == False:
 			subprocess.call(merge_the_results,stdout = fnull, stderr = fnull)
 		else:
@@ -728,6 +731,7 @@ def f_main():
 	global shutdownnodes
 	global convert
 	global currency
+	global dash_ami_location
 	global verbose
 	global tracker
 	global allowinstances
@@ -742,7 +746,7 @@ def f_main():
 	global switchami
 	global switchsubnet
 	cdash_ami, cdash_subnet, configlocation, starcluster_config, sevenzip, mergeresults, downbest, numdown, \
-	terminator, shutdownnodes, convert, currency, verbose, tracker, allowinstances, maxnodes, ID, \
+	terminator, shutdownnodes, convert, currency, dash_ami_location, verbose, tracker, allowinstances, maxnodes, ID, \
 	masternode_different, masternode_type, switchregion, region, region_host, switchkey, switchami, switchsubnet = getconfiguration()
 	checkfiles()
 	itype, numnodes, update_verbose_configuration = clusterprms(masternode_type)
