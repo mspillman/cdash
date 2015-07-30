@@ -115,7 +115,8 @@ In the [starcluster_settings] section, ensure that the variable starcluster\_con
 
 The section should look like this:
 
-'''####################################
+```
+####################################
 #### STARCLUSTER CONFIGURATION #####
 [starcluster_settings]
 
@@ -125,9 +126,30 @@ starcluster_config = C:\Users\pt907123\.starcluster\config
 # CDASH wine AMI & default subnet to use
 cdash_ami = ami-xxxxxxxx
 cdash_subnet = subnet-xxxxxxxx
-'''
+```
 
 In the [cdash\_settings] section, update the dash\_ami\_location parameter to reflect the location of the DASH executable on the AMI. The other settings should be adjusted to suit your needs. Refer to the comments in the file for a description of their function.
 
 
 #### 5. Running cdash
+
+cdash has been designed to be easy to use once configured.
+
+First, open a PXRD pattern and proceed as normal through the procedure of indexing, space groupe determination and Pawley refinement. Then set up DASH batch files through the procedure outlined in this paper: http://scripts.iucr.org/cgi-bin/paper?db5053
+
+Save the dbf files in the same directory as the .sdi file, then navigate to this directory _via_ a command prompt.
+
+Assuming that cdash.py is stored in a directory on the sytem PATH, then run the following command:
+
+`python cdash.py`
+
+The user is then prompted to provide the number of instances to run, and the instance type to use. Alternatively, these parameters can be supplied as command-line arguments by running the following type of command:
+
+`python cdash.py -i instancetype -n numberofinstances`
+
+Where the argument instancetype is an Amazon EC2 instance type, for example c4.8xlarge and numberofinstances is an integer deciding the number of running instances in the cluster. 
+By way of example, to launch a cluster of 5 c4.8xlarge instances the following command would be used:
+
+`python cdash.py -i c4.8xlarge -n 5`
+
+
