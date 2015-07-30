@@ -32,13 +32,14 @@ To make use of the Amazon EC2 service, an Amazon Web Services (AWS) account is r
 
 #### 2. Installation and configuration of StarCluster
 
-The StarCluster ["Quick-Start instructions"](http://star.mit.edu/cluster/docs/latest/quickstart.html) and associated screencast serve as a useful reference.
+The StarCluster [Quick-Start instructions](http://star.mit.edu/cluster/docs/latest/quickstart.html) and associated screencast serve as a useful reference.
 
 ##### Installation
 [StarCluster](http://star.mit.edu/cluster) is a Python toolkit to automate the building and management of clusters on the Amazon EC2 service.
 Users should first install Python 2.7, either from the [official Python website](https://www.python.org/) or from an alternative distribution such as the [Anaconda Scientific Python Distribution](https://store.continuum.io/cshop/anaconda/).
 
 The [StarCluster installation instructions](http://star.mit.edu/cluster/docs/latest/installation.html) provide information for installing StarCluster under different operating systems. [pip](https://pip.pypa.io/en/stable/installing.html#install-pip) is another useful tool that can be used to install StarCluster and its related dependencies. Once installed, simply run the command:
+
 `pip install starcluster`
 
 ##### Configuration
@@ -46,7 +47,7 @@ Prior to using StarCluster, users need to create a configuration file. This is a
 
 `starcluster help`
 
-from the command line, then selecting option "2" to write the config template to the default location.
+from the command line, then selecting option 2 to write the config template to the default location.
 
 Locate the file and open it with a text editor. The following AWS credentials should now be entered into the [aws info] section of the file. Follow the links for information on how to obtain these details.
 
@@ -58,7 +59,7 @@ Users must also create a [key pair](http://docs.aws.amazon.com/AWSEC2/latest/Use
 
 Users who wish to use [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) to interact with their clusters will need to [convert their key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#prepare-for-putty).
 
-Note that PuTTY is _not_ required for cdash use.
+Note that PuTTY is **_not_** required for cdash use.
 
 
 Once a suitable key pair has been created, the config should be updated by creating a new section for that key. For a key downloaded from AWS called "somekey.pem", the section should look like this:
@@ -74,3 +75,11 @@ After checking that the parameter `NODE_IMAGE_ID` is not commented out, and has 
 
 `starcluster listpublic`
 
+
+#### 3. Setting up a custom AMI
+
+
+#### 4. Configuring cdash
+
+
+#### 5. Running cdash
