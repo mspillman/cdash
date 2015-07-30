@@ -43,24 +43,34 @@ The [StarCluster installation instructions](http://star.mit.edu/cluster/docs/lat
 
 ##### Configuration
 Prior to using StarCluster, users need to create a configuration file. This is accomplished by running the command:
+
 `starcluster help`
+
 from the command line, then selecting option "2" to write the config template to the default location.
 
 Locate the file and open it with a text editor. The following AWS credentials should now be entered into the [aws info] section of the file. Follow the links for information on how to obtain these details.
 
-[AWS_ACCESS_KEY_ID](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html)
-[AWS_SECRET_ACCESS_KEY](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html)
-[AWS_USER_ID](http://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html)
+- [AWS_ACCESS_KEY_ID](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html)
+- [AWS_SECRET_ACCESS_KEY](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html)
+- [AWS_USER_ID](http://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html)
 
-Users must also create a [key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) for use with their clusters. Follow the [instructions on creating key pairs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair), and download the .pem file to a safe location. Note that users who wish to use [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) to interact with their clusters will need to [convert their key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#prepare-for-putty). PuTTY is _not_ required for cdash use.
+Users must also create a [key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) for use with their clusters. Follow the [instructions on creating key pairs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair), and download the .pem file to a safe location.
+
+Users who wish to use [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) to interact with their clusters will need to [convert their key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#prepare-for-putty).
+
+Note that PuTTY is _not_ required for cdash use.
+
 
 Once a suitable key pair has been created, the config should be updated by creating a new section for that key. For a key downloaded from AWS called "somekey.pem", the section should look like this:
+
 ```[key somekey]
 KEY_LOCATION = /path/to/somekey.pem```
 
 The `[smallcluster]` section of the config file should be modified to make use of this key by modifying the `KEYNAME` paramater such that (continuing with the example above) it reads
+
 `KEYNAME = somekey`
 
 After checking that the parameter `NODE_IMAGE_ID` is not commented out, and has a valid StarCluster AMI associated with it, StarCluster is now ready to use. To check which StarCluster AMIs are currently available, run the command:
-`starcluster listpublic`.
+
+`starcluster listpublic`
 
