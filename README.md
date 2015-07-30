@@ -62,14 +62,16 @@ Users must also create a [key pair](http://docs.aws.amazon.com/AWSEC2/latest/Use
 
 Users who wish to use [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) to interact with their clusters will need to [convert their key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#prepare-for-putty).
 
-Note that PuTTY is **_not_** required for cdash use.
+Note that PuTTY is not required for cdash use, but is recommended for Windows users, particularly for setting up an AMI as described in Section 3.
 
 
 Once a suitable key pair has been created, the config should be updated by creating a new section for that key. For a key downloaded from AWS called "somekey.pem", the section should look like this:
 
-```[key somekey]
+```
+[key somekey]
 
-KEY_LOCATION = /path/to/somekey.pem```
+KEY_LOCATION = /path/to/somekey.pem
+```
 
 The `[smallcluster]` section of the config file should be modified to make use of this key by modifying the `KEYNAME` paramater such that (continuing with the example above) it reads
 
