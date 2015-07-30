@@ -65,6 +65,7 @@ Note that PuTTY is **_not_** required for cdash use.
 Once a suitable key pair has been created, the config should be updated by creating a new section for that key. For a key downloaded from AWS called "somekey.pem", the section should look like this:
 
 ```[key somekey]
+
 KEY_LOCATION = /path/to/somekey.pem```
 
 The `[smallcluster]` section of the config file should be modified to make use of this key by modifying the `KEYNAME` paramater such that (continuing with the example above) it reads
