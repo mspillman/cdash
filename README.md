@@ -3,20 +3,17 @@ Process DASH simulated annealing jobs on the Amazon EC2 service
 
 ## Requires:
 
-###Local (Windows) machine:
-- [Python 2.7](https://www.python.org/)
-  - [StarCluster](http://star.mit.edu/cluster/)
-- [DASH 3.3.4 (with Site License)](https://www.ccdc.cam.ac.uk/Solutions/PowderDiffraction/Pages/DASH.aspx)
-- [7zip](http://www.7-zip.org/) (optional)
-
-###Cloud:
-- [AWS Account](http://aws.amazon.com/)
-- Custom AMI based on StarCluster public AMI, with the following packages pre-installed:
+Local (Windows) machine | Cloud
+[Python 2.7](https://www.python.org/)|[AWS Account](http://aws.amazon.com/)
+  [StarCluster](http://star.mit.edu/cluster/)|Custom AMI based on StarCluster public AMI, with the following packages pre-installed:
   - Wine
   - DASH 3.3.4 (installed with Wine)
   - zip
   - xvfb
   - p7zip-full
+[DASH 3.3.4 (with Site License)](https://www.ccdc.cam.ac.uk/Solutions/PowderDiffraction/Pages/DASH.aspx)|
+[7zip](http://www.7-zip.org/) (optional)|
+
 
 ## Installing dependencies and running cdash
 ### Contents:
@@ -25,6 +22,7 @@ Process DASH simulated annealing jobs on the Amazon EC2 service
 3. Setting up custom AMI
 4. Configuration of cdash
 5. Running cdash
+6. Using cdash in a non-default AWS region
 
 
 #### 1. Obtaining an Amazon AWS account
@@ -64,9 +62,9 @@ Note that PuTTY is **_not_** required for cdash use.
 
 Once a suitable key pair has been created, the config should be updated by creating a new section for that key. For a key downloaded from AWS called "somekey.pem", the section should look like this:
 
-```[key somekey]
+`[key somekey]`
 
-KEY_LOCATION = /path/to/somekey.pem```
+`KEY_LOCATION = /path/to/somekey.pem`
 
 The `[smallcluster]` section of the config file should be modified to make use of this key by modifying the `KEYNAME` paramater such that (continuing with the example above) it reads
 
@@ -84,3 +82,6 @@ After checking that the parameter `NODE_IMAGE_ID` is not commented out, and has 
 
 
 #### 5. Running cdash
+
+
+#### 6. Using cdash in a non-default AWS region
