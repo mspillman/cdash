@@ -155,8 +155,8 @@ KEY_LOCATION = C:\some\path\to\some-other-key.pem
 
 ii. Modify the cdash config to include your alternative region and subnet.
 
-In the [advanced\_settings] section of configcdash.cfg, set the `switchregion` variable to True, then configure the variables
-`region`,`region\_host`,`switchami` and `switchsubnet`. By way of example, for running in the eu-west-1 region, the section would look like this:
+In the [advanced_settings] section of configcdash.cfg, set the `switchregion` variable to True, then configure the variables
+`region`,`region_host`,`switchami` and `switchsubnet`. By way of example, for running in the eu-west-1 region, the section would look like this:
 
 ```
 switchregion = True
