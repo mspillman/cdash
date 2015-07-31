@@ -144,6 +144,7 @@ In the [cdash\_settings] section, update the dash\_ami\_location parameter to re
 If you wish to run your clusters in an [AWS region](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) other than the StarCluster default (us-east-1), you will need to do some additional configuration of cdash.
 
 First, you will need to [copy your AMI](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html) to the desired region, and create a new keypair for that region. You will then need to configure the VPC for that region. Once this has been done, you will need to:
+
 i. Modify the StarCluster config to include your new keypair by adding the following lines below your existing key:
 
 ```
