@@ -86,6 +86,8 @@ After checking that the parameter `NODE_IMAGE_ID` is not commented out, and has 
 
 `starcluster listpublic`
 
+-----
+Users wishing to use the latest c4 instance types should replace the file C:\Python27\Lib\site-packages\starcluster\static.py with [this one](https://github.com/jtriley/StarCluster/blob/2ee0140160b7b8fcd859f8a4caefdd2e05b21abb/starcluster/static.py) in order to have them enabled, or wait for the next official StarCluster release. 
 
 #### 3. Setting up a custom AMI and configuring a VPC
 _Currently, StarCluster does not have an AMI based on Ubuntu 14.04. This operating system is required to make use of the latest c4.8xlarge instance type. If you do not intend to use this instance, or wish to wait for the official StarCluster AMI, skip the steps to create the AMI and continue on to step ii below._
