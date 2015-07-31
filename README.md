@@ -6,9 +6,8 @@ Process DASH simulated annealing jobs on the Amazon EC2 service
 - [Python 2.7](https://www.python.org/)
   - [StarCluster](http://star.mit.edu/cluster/)
 - [DASH 3.3.4 (with Site License)](https://www.ccdc.cam.ac.uk/Solutions/PowderDiffraction/Pages/DASH.aspx)
-- [7zip](http://www.7-zip.org/) (optional)
 
-#####Cloud:
+##### Cloud:
 - [AWS Account](http://aws.amazon.com/)
 - Custom AMI based on StarCluster public AMI, with the following packages pre-installed:
   - Wine
@@ -17,6 +16,11 @@ Process DASH simulated annealing jobs on the Amazon EC2 service
   - xvfb
   - p7zip-full
 
+##### Recommended for Windows users
+- [7zip](http://www.7-zip.org/)
+- [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+- [WinSCP](https://winscp.net/eng/download.php)
+- [XWin Server](http://x.cygwin.com/devel/server/)
 
 ----------
 
