@@ -94,9 +94,8 @@ _Currently, StarCluster does not have an AMI based on Ubuntu 14.04. This operati
 
 i. [Instructions for creating an Ubuntu 14.04 AMI](http://star.mit.edu/cluster/mlarchives/2545.html). Follow these instructions up to step 3. When logging in to the instance, make sure you have X-forwarding enabled so that you can view graphical windows. This will be critical when installing DASH. For Windows users, [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) is recommended, to be used in conjunction with [XWin server](http://x.cygwin.com/devel/server/).
 
-ii. Once logged on to the instance, Run the following commands to install the dependencies for cdash:
-`sudo dpkg --add-architecture i386`
-`sudo apt-get install wine xvfb p7zip-full zip -y`
+ii. Once logged on to the instance, Run the following command to install the dependencies for cdash:
+`sudo dpkg --add-architecture i386 && sudo apt-get install wine xvfb p7zip-full zip -y`
 
 iii. We now need to upload and install DASH. This can be accomplished either by uploading the file directly to the instance _via_ scp (Windows users are advised to use [WinSCP](https://winscp.net/eng/download.php)) or by uploading the file to a server then downloading the file onto the instance using wget:
 `wget http://www.some-url-to-file.server/DASH-installer.exe`
