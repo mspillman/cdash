@@ -90,12 +90,16 @@ After checking that the parameter `NODE_IMAGE_ID` is not commented out, and has 
 Users wishing to use the latest c4 instance types should replace the file `C:\Python27\Lib\site-packages\starcluster\static.py` with [this one](https://github.com/jtriley/StarCluster/blob/2ee0140160b7b8fcd859f8a4caefdd2e05b21abb/starcluster/static.py) in order to have them enabled, or wait for the next official StarCluster release. 
 
 #### 3. Setting up a custom AMI and configuring a VPC
-_Currently, StarCluster does not have an AMI based on Ubuntu 14.04. This operating system is required to make use of the latest c4.8xlarge instance type. If you do not intend to use this instance, or wish to wait for the official StarCluster AMI, skip the steps to create the AMI and continue on to step ii below._
+_Currently, StarCluster does not have an AMI based on Ubuntu 14.04. This operating system is required to make use of the latest c4.8xlarge instance type. If you do not intend to use this instance type, or wish to wait for an official StarCluster AMI, skip the steps to create the AMI and continue on to step ii below._
 
-i. [Instructions for creating an Ubuntu 14.04 AMI](http://star.mit.edu/cluster/mlarchives/2545.html). Follow these instructions up to step 3. When logging in to the instance, make sure you have X-forwarding enabled so that you can view graphical windows. This will be critical when installing DASH. For Windows users, [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) is recommended, to be used in conjunction with [XWin server](http://x.cygwin.com/devel/server/).
+_Once an official StarCluster Ubuntu 14.04 AMI has been released, this guide will be updated to reflect that._
 
-ii. Once logged on to the instance, Run the following command to install the dependencies for cdash:
-`sudo dpkg --add-architecture i386 && sudo apt-get install wine xvfb p7zip-full zip -y`
+i. [Instructions for creating an Ubuntu 14.04 AMI](http://star.mit.edu/cluster/mlarchives/2545.html). Follow these instructions up to step 3. 
+
+ii. When logging in to the instance, make sure you have X-forwarding enabled so that you can view graphical windows. This will be critical when installing DASH. For Windows users, [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) is recommended, to be used in conjunction with [XWin server](http://x.cygwin.com/devel/server/).
+
+Once logged on to the instance, Run the following command to install the dependencies for cdash:
+`sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine xvfb p7zip-full zip -y`
 
 iii. We now need to upload and install DASH. This can be accomplished either by uploading the file directly to the instance _via_ scp (Windows users are advised to use [WinSCP](https://winscp.net/eng/download.php)) or by uploading the file to a server then downloading the file onto the instance using wget:
 `wget http://www.some-url-to-file.server/DASH-installer.exe`
@@ -110,7 +114,7 @@ v. Once DASH has been set up and is running correctly, it is now possible to sav
 Once the AMI has been created, note the AMI ID.
 
 -----
-The c4 instances need to in a VPC. Log on to the AWS console, and click on VPC. Under "Your VPCs", a default VPC should already exist. Click on "Route Tables". A route table should already exist. Select it, then click on the "Subnet associations" tab. Click Edit, then select a subnet to be associated with the route table.  Take a note of the subnet ID. 
+The c4 instances need to run in a VPC. Log on to the AWS console, and click on VPC. Under "Your VPCs", a default VPC should already exist. Click on "Route Tables". A route table should already exist. Select it, then click on the "Subnet associations" tab. Click Edit, then select a subnet to be associated with the route table.  Take a note of the subnet ID. 
 
 
 
