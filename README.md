@@ -92,7 +92,7 @@ Users wishing to use the latest c4 instance types should replace the file `C:\Py
 #### 3. Setting up a custom AMI and configuring a VPC
 _Currently, StarCluster does not have an AMI based on Ubuntu 14.04. This operating system is required to make use of the latest c4.8xlarge instance type. If you do not intend to use this instance type, or wish to wait for an official StarCluster AMI, skip the steps to create the AMI and continue on to step ii below._
 
-_Once an official StarCluster Ubuntu 14.04 AMI has been released, this guide will be updated to reflect that._
+_Once an official StarCluster Ubuntu 14.04 AMI has been released, this guide will be updated to make use of the official AMI._
 
 i. [Instructions for creating an Ubuntu 14.04 AMI](http://star.mit.edu/cluster/mlarchives/2545.html). Follow these instructions up to step 3. 
 
