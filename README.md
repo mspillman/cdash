@@ -174,7 +174,7 @@ switchsubnet = subnet-yyyyyyyy
 
 cdash has been designed to be easy to use once configured.
 
-First, open a PXRD pattern and proceed as normal through the process of indexing, space groupe determination and Pawley refinement. Then create a set of DASH batch files through the procedure outlined in this paper: http://scripts.iucr.org/cgi-bin/paper?db5053
+First, open a PXRD pattern and proceed as normal through the process of indexing, space group determination and Pawley refinement. Then create a set of DASH batch files through the procedure outlined in this paper: http://scripts.iucr.org/cgi-bin/paper?db5053
 
 Save the dbf files in the same directory as the .sdi file, then navigate to this directory _via_ a command prompt.
 
