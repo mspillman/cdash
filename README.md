@@ -20,7 +20,7 @@ Process DASH simulated annealing jobs on the Amazon EC2 service
 - [7zip](http://www.7-zip.org/)
 - [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 - [WinSCP](https://winscp.net/eng/download.php)
-- [XWin Server](http://x.cygwin.com/devel/server/)
+- [Xming](http://sourceforge.net/projects/xming/) or [XWin Server](http://x.cygwin.com/devel/server/)
 
 ----------
 
@@ -96,7 +96,7 @@ _Once an official StarCluster Ubuntu 14.04 AMI has been released, this guide wil
 
 i. [Instructions for creating an Ubuntu 14.04 AMI](http://star.mit.edu/cluster/mlarchives/2545.html). Follow these instructions up to step 3. 
 
-ii. When logging in to the instance, make sure you have X-forwarding enabled so that you can view graphical windows. This will be critical when installing DASH. For Windows users, [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) is recommended, to be used in conjunction with [XWin server](http://x.cygwin.com/devel/server/).
+ii. When logging in to the instance, make sure you have X-forwarding enabled so that you can view graphical windows. This will be critical when installing DASH. For Windows users, [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) is recommended, to be used in conjunction with [Xming](http://sourceforge.net/projects/xming/) or [XWin server](http://x.cygwin.com/devel/server/).
 
 Once logged on to the instance, Run the following command to install the dependencies for cdash:
 `sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine xvfb p7zip-full zip -y`
