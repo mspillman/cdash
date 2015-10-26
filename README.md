@@ -106,8 +106,15 @@ iii. We now need to upload and install DASH. This can be accomplished either by 
 
 iv. Locate the file on the instance, then run the command:
 `wine DASH-installer.exe` 
-Follow the prompts to install DASH. Take careful note of where DASH has been installed. This will be important for cdash configuration (see section 4 below). Once the installation has completed make sure you run DASH to enter in your site license details. The installer provides an option to run DASH, or alternatively, you can start DASH manually by navigating to the installation directory and running the command:
+Follow the prompts to install DASH. When installing DASH, it is important to install it to a directory that does not contain any spaces or non-standard characters such as parantheses. A recommended installation directory is:
+`C:\DASH`
+
+The true path on the linux system is then `/home/username/.wine/drive_c/DASH/DASH.exe`
+
+Make a note of this "full" location. This will be important for cdash configuration (see section 4 below). Once the installation has completed make sure you run DASH to enter in your site license details. The installer provides an option to run DASH, or alternatively, you can start DASH manually by navigating to the installation directory and running the command:
 `wine DASH.exe`
+
+
 
 v. Once DASH has been set up and is running correctly, it is now possible to save the state of the instance as an AMI. In order to reduce the storage costs associated with the AMI, delete the DASH installer file before returning to the [instructions for creating an Ubuntu 14.04 AMI](http://star.mit.edu/cluster/mlarchives/2545.html) and proceeding with steps 4, 5 and 6. Note - when creating the AMI, it is a good idea to create an AMI with > 8GB of storage attached if you intend to process jobs with large numbers of SA runs. 32GB is a reasonable size to use.
 
