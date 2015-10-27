@@ -15,7 +15,7 @@ python dbfgen.py input_dbf_file.dbf
 
 or
 
-python dbfgen.py input_dbf_file.dbf NameError
+python dbfgen.py input_dbf_file.dbf N
 where N is an integer number of dbfs to generate.
 
 '''
