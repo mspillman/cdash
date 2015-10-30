@@ -96,20 +96,24 @@ _Once an official StarCluster Ubuntu 14.04 AMI has been released, this guide wil
 
 i. [Instructions for creating an Ubuntu 14.04 AMI](http://star.mit.edu/cluster/mlarchives/2545.html). Follow these instructions up to step 3. 
 
-ii. When logging in to the instance, make sure you have X-forwarding enabled so that you can view graphical windows. This will be critical when installing DASH. For Windows users, [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) is recommended, to be used in conjunction with [Xming](http://sourceforge.net/projects/xming/) or [XWin server](http://x.cygwin.com/devel/server/).
+ii. When logging in to the instance, make sure you have X-forwarding enabled so that you can view graphical windows. This will be critical when installing DASH. For Windows users, [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) is recommended, to be used in conjunction with [Xming](http://sourceforge.net/projects/xming/) or [XWin server](http://x.cygwin.com/devel/server/). Due to security measures on the AMI, you must log on with username "ubuntu" and not "root".
 
-Once logged on to the instance, Run the following command to install the dependencies for cdash:
+Once logged on to the instance, run the following command to install the dependencies for cdash:
 `sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt-get install wine xvfb p7zip-full zip -y`
 
 iii. We now need to upload and install DASH. This can be accomplished either by uploading the file directly to the instance _via_ scp (Windows users are advised to use [WinSCP](https://winscp.net/eng/download.php)) or by uploading the file to a server then downloading the file onto the instance using wget:
 `wget http://www.some-url-to-file.server/DASH-installer.exe`
 
 iv. Locate the file on the instance, then run the command:
+`sudo -i`
+
+then
+
 `wine DASH-installer.exe` 
 Follow the prompts to install DASH. When installing DASH, it is important to install it to a directory that does not contain any spaces or non-standard characters such as parantheses. A recommended installation directory is:
 `C:\DASH`
 
-The true path on the linux system is then `/home/username/.wine/drive_c/DASH/DASH.exe`
+The true path on the linux system should then be something like `/root/.wine/drive_c/DASH/DASH.exe`
 
 Make a note of this "full" location. This will be important for cdash configuration (see section 4 below). Once the installation has completed make sure you run DASH to enter in your site license details. The installer provides an option to run DASH, or alternatively, you can start DASH manually by navigating to the installation directory and running the command:
 `wine DASH.exe`
