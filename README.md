@@ -1,6 +1,9 @@
 # cdash
 Process DASH simulated annealing jobs on the Amazon EC2 service
 
+This is the program described here: http://scripts.iucr.org/cgi-bin/paper?S160057671502049X
+If you use CDASH in your work, please consider referencing the above paper.
+
 #### Requires:
 #####Local (Windows) machine:
 - [Python 2.7](https://www.python.org/)
