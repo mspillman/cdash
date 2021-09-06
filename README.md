@@ -1,4 +1,7 @@
 # cdash
+Update September 2021:
+A _significantly_ improved method for cloud-based SDPD can be found [here](https://github.com/mspillman/gallop).
+
 Process DASH simulated annealing jobs on the Amazon EC2 service
 
 This is the program described here: http://scripts.iucr.org/cgi-bin/paper?S160057671502049X
