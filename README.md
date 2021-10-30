@@ -1,6 +1,12 @@
-# cdash
-Update September 2021:
+
+----
+Update 2021:
 A _significantly_ improved method for cloud-based SDPD can be found [here](https://github.com/mspillman/gallop).
+
+StarCluster, the library that CDASH relies on for interfacing with EC2 is no longer maintained.
+----
+
+## cdash
 
 Process DASH simulated annealing jobs on the Amazon EC2 service
 
